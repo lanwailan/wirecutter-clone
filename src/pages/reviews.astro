@@ -16,12 +16,12 @@ const reviews = await getCollection('reviews');
       {reviews.map((review) => (
         <ReviewCard
           title={review.data.title}
-          category={review.data.category}
+          category={review.data.productCategory}
           rating={review.data.rating}
           pros={review.data.pros}
           cons={review.data.cons}
           slug={review.slug}
-          image={review.data.image}
+          image={review.data.coverImage}
         />
       ))}
     </div>

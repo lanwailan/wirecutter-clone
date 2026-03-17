@@ -3,27 +3,28 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import RatingStars from '../../components/RatingStars.tsx';
 import { getCollection, getEntry } from 'astro:content';
 
-// 获取路径参数
-const { slug } = Astro.params;
-
-// 获取评测内容
-const review = await getEntry('reviews', slug);
-
-// 如果评测不存在，返回404
-if (!review) {
-  return Astro.redirect('/404');
+// 导出 getStaticPaths 函数
+export async function getStaticPaths() {
+  const reviews = await getCollection('reviews');
+  return reviews.map((review) => ({
+    params: { slug: review.slug },
+    props: { review },
+  }));
 }
+
+// 通过 props 接收评测数据
+const { review } = Astro.props;
 
 // 获取相关评测（同类别）
 const allReviews = await getCollection('reviews');
 const relatedReviews = allReviews
-  .filter(r => r.data.category === review.data.category && r.slug !== slug)
+  .filter(r => r.data.productCategory === review.data.productCategory && r.slug !== review.slug)
   .slice(0, 3);
 ---
 
 <BaseLayout 
   title={`${review.data.title} Review - Wirecutter Clone`}
-  description={review.data.summary}
+  description={review.data.description}
 >
   <div class="container mx-auto px-4 py-8">
     <!-- 面包屑导航 -->
@@ -42,14 +43,14 @@ const relatedReviews = allReviews
           <span class="ml-2 font-semibold">{review.data.rating}/5</span>
         </div>
         <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">
-          {review.data.category}
+          {review.data.productCategory}
         </span>
-        <span class="text-gray-600">{review.data.date.toLocaleDateString()}</span>
+        <span class="text-gray-600">{review.data.publishDate.toLocaleDateString()}</span>
       </div>
       
-      {review.data.image && (
+      {review.data.coverImage && (
         <img 
-          src={review.data.image} 
+          src={review.data.coverImage} 
           alt={review.data.title}
           class="w-full h-64 md:h-96 object-cover rounded-lg mb-6"
         />
@@ -59,7 +60,7 @@ const relatedReviews = allReviews
     <!-- 摘要 -->
     <div class="bg-gray-50 p-6 rounded-lg mb-8">
       <h2 class="text-xl font-bold mb-3">Summary</h2>
-      <p class="text-gray-700">{review.data.summary}</p>
+      <p class="text-gray-700">{review.data.description}</p>
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -96,12 +97,12 @@ const relatedReviews = allReviews
           </div>
         </div>
 
-        {/* 规格（如果有） */}
-        {review.data.specs && Object.keys(review.data.specs).length > 0 && (
+        <!-- 规格（如果有） -->
+        {review.data.specifications && Object.keys(review.data.specifications).length > 0 && (
           <div class="bg-white border rounded-lg p-6">
             <h3 class="text-lg font-bold mb-4">Specifications</h3>
             <dl class="space-y-2">
-              {Object.entries(review.data.specs).map(([key, value]) => (
+              {Object.entries(review.data.specifications).map(([key, value]) => (
                 <div class="flex justify-between">
                   <dt class="text-gray-600">{key}:</dt>
                   <dd class="font-medium">{value}</dd>
@@ -113,7 +114,7 @@ const relatedReviews = allReviews
       </div>
     </div>
 
-    {/* 相关评测 */}
+    <!-- 相关评测 -->
     {relatedReviews.length > 0 && (
       <div class="mt-12">
         <h2 class="text-2xl font-bold mb-6">Related Reviews</h2>
