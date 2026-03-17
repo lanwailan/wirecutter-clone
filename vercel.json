@@ -2,39 +2,20 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "devCommand": "npm run dev",
-  "installCommand": "npm install",
+  "installCommand": "npm ci",  // 使用 ci 而不是 install，更快更稳定
   "framework": "astro",
-  "regions": ["sin1"],
-  "env": {
-    "ENABLE_ISR": "true"
+  "functions": {
+    "**/*.html": {
+      "maxDuration": 5
+    }
   },
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/"
-    }
-  ],
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        },
-        {
-          "key": "X-Frame-Options",
-          "value": "DENY"
-        },
-        {
-          "key": "X-XSS-Protection",
-          "value": "1; mode=block"
-        },
-        {
-          "key": "Referrer-Policy",
-          "value": "strict-origin-when-cross-origin"
-        }
-      ]
-    }
-  ]
+  "regions": ["iad1"],  // 使用美国东部，构建更快
+  "env": {
+    "ENABLE_ISR": "true",
+    "NODE_ENV": "production",
+    "NODE_VERSION": "18"  // 指定 Node.js 版本
+  },
+  "github": {
+    "silent": true
+  }
 }
