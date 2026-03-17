@@ -1,0 +1,152 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary: 14 165 233;
+    --color-secondary: 107 114 128;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply antialiased;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-100;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-400 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-500;
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl;
+  }
+
+  .btn-primary {
+    @apply bg-primary-500 hover:bg-primary-600 text-white font-medium py-2 px-4 rounded-lg 
+           transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 
+           focus:ring-offset-2;
+  }
+
+  .btn-secondary {
+    @apply bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-lg 
+           transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 
+           focus:ring-offset-2;
+  }
+
+  .card {
+    @apply bg-white rounded-xl shadow-md p-6 border border-gray-200;
+  }
+
+  .card-hover {
+    @apply card hover:shadow-lg transition-shadow duration-200;
+  }
+
+  .section-padding {
+    @apply py-8 md:py-12 lg:py-16;
+  }
+
+  .heading-1 {
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900;
+  }
+
+  .heading-2 {
+    @apply text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900;
+  }
+
+  .heading-3 {
+    @apply text-xl md:text-2xl font-semibold text-gray-800;
+  }
+
+  .text-body {
+    @apply text-gray-700 leading-relaxed;
+  }
+
+  .text-small {
+    @apply text-sm text-gray-600;
+  }
+
+  /* Wirecutter specific styles */
+  .product-table {
+    @apply w-full border-collapse;
+  }
+
+  .product-table th {
+    @apply bg-gray-50 text-left py-3 px-4 font-semibold text-gray-700 border-b border-gray-200;
+  }
+
+  .product-table td {
+    @apply py-3 px-4 border-b border-gray-200;
+  }
+
+  .product-table tr:hover {
+    @apply bg-gray-50;
+  }
+
+  .rating-stars {
+    @apply inline-flex items-center;
+  }
+
+  .rating-star {
+    @apply text-yellow-400;
+  }
+
+  .rating-star-empty {
+    @apply text-gray-300;
+  }
+
+  .price-tag {
+    @apply font-bold text-green-600;
+  }
+
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .badge-primary {
+    @apply bg-primary-100 text-primary-700;
+  }
+
+  .badge-success {
+    @apply bg-green-100 text-green-800;
+  }
+
+  .badge-warning {
+    @apply bg-yellow-100 text-yellow-800;
+  }
+
+  .pros-cons-list {
+    @apply space-y-2;
+  }
+
+  .pros-item {
+    @apply flex items-start text-green-600;
+  }
+
+  .cons-item {
+    @apply flex items-start text-red-600;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}

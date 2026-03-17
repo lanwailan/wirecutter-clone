@@ -1,0 +1,203 @@
+{
+  "$ref": "#/definitions/reviews",
+  "definitions": {
+    "reviews": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "excerpt": {
+          "type": "string"
+        },
+        "productName": {
+          "type": "string"
+        },
+        "productCategory": {
+          "type": "string"
+        },
+        "productBrand": {
+          "type": "string"
+        },
+        "rating": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 5
+        },
+        "ratingCount": {
+          "type": "integer",
+          "exclusiveMinimum": 0
+        },
+        "helpfulPercentage": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "price": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "priceCurrency": {
+          "type": "string",
+          "default": "USD"
+        },
+        "priceHistory": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "date": {
+                "type": "string"
+              },
+              "price": {
+                "type": "number"
+              },
+              "retailer": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "date",
+              "price",
+              "retailer"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "keyFeatures": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "pros": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "cons": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "specifications": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "author": {
+          "type": "string"
+        },
+        "publishDate": {
+          "type": "string"
+        },
+        "updateDate": {
+          "type": "string"
+        },
+        "readTime": {
+          "type": "integer",
+          "exclusiveMinimum": 0
+        },
+        "slug": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "featured": {
+          "type": "boolean",
+          "default": false
+        },
+        "editorPick": {
+          "type": "boolean",
+          "default": false
+        },
+        "topPick": {
+          "type": "boolean",
+          "default": false
+        },
+        "coverImage": {
+          "type": "string"
+        },
+        "gallery": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "videoReview": {
+          "type": "string"
+        },
+        "relatedProducts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "alternativeProducts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "retailers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string",
+                "format": "uri"
+              },
+              "price": {
+                "type": "number"
+              },
+              "inStock": {
+                "type": "boolean",
+                "default": true
+              }
+            },
+            "required": [
+              "name",
+              "url",
+              "price"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "description",
+        "productName",
+        "productCategory",
+        "rating",
+        "price",
+        "keyFeatures",
+        "pros",
+        "cons",
+        "author",
+        "publishDate",
+        "readTime"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

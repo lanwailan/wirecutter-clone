@@ -1,0 +1,235 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ReviewCard from '@/components/ReviewCard.tsx';
+import ProductTable from '@/components/ProductTable.tsx';
+
+// Mock data for demonstration
+const featuredReviews = [
+  {
+    id: '1',
+    title: 'The Best Laptops for 2026',
+    excerpt: 'After testing 25 laptops across all price ranges, we found the best options for students, professionals, and gamers.',
+    category: 'Electronics',
+    rating: 4.8,
+    author: 'Alex Johnson',
+    date: '2026-03-15',
+    readTime: '12 min',
+    tags: ['Top Pick', 'Editor\'s Choice'],
+    isFeatured: true,
+  },
+  {
+    id: '2',
+    title: 'Our Favorite Coffee Makers Under $200',
+    excerpt: 'We brewed hundreds of cups to find the best coffee makers that deliver great taste without breaking the bank.',
+    category: 'Kitchen',
+    rating: 4.5,
+    author: 'Maria Chen',
+    date: '2026-03-14',
+    readTime: '8 min',
+    tags: ['Budget', 'Value'],
+  },
+  {
+    id: '3',
+    title: 'The Most Comfortable Office Chairs',
+    excerpt: 'Sitting for hours? We tested 15 ergonomic chairs to find the ones that actually support your back and improve posture.',
+    category: 'Home Office',
+    rating: 4.7,
+    author: 'David Kim',
+    date: '2026-03-13',
+    readTime: '10 min',
+    tags: ['Ergonomic', 'Health'],
+  },
+];
+
+const sampleProducts = [
+  {
+    id: '1',
+    name: 'MacBook Pro 16" M3',
+    category: 'Laptop',
+    rating: 4.9,
+    price: 2499,
+    features: ['M3 Pro chip', '16GB RAM', '1TB SSD', 'Liquid Retina XDR'],
+    pros: ['Excellent performance', 'Great battery life', 'Stunning display'],
+    cons: ['Expensive', 'Limited ports'],
+    link: '#',
+  },
+  {
+    id: '2',
+    name: 'Dell XPS 15',
+    category: 'Laptop',
+    rating: 4.6,
+    price: 1899,
+    features: ['Intel Core i7', '16GB RAM', '512GB SSD', 'OLED display'],
+    pros: ['Sleek design', 'Good value', 'Color-accurate screen'],
+    cons: ['Average battery', 'Webcam placement'],
+    link: '#',
+  },
+  {
+    id: '3',
+    name: 'Framework Laptop 16',
+    category: 'Laptop',
+    rating: 4.7,
+    price: 1699,
+    features: ['Modular design', 'AMD Ryzen 7', '16GB RAM', 'Upgradable'],
+    pros: ['Repairable', 'Eco-friendly', 'Future-proof'],
+    cons: ['Heavier', 'Limited availability'],
+    link: '#',
+  },
+];
+
+const categories = [
+  { name: 'Electronics', count: 245, icon: '💻' },
+  { name: 'Home & Garden', count: 189, icon: '🏠' },
+  { name: 'Kitchen', count: 156, icon: '🔪' },
+  { name: 'Sleep', count: 98, icon: '🛏️' },
+  { name: 'Health & Fitness', count: 112, icon: '💪' },
+  { name: 'Travel', count: 87, icon: '✈️' },
+];
+---
+
+<BaseLayout title="Wirecutter Clone - Product Reviews You Can Trust">
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-r from-primary-50 to-blue-50 section-padding">
+    <div class="container-custom">
+      <div class="max-w-3xl mx-auto text-center">
+        <h1 class="heading-1 mb-6">
+          Independent Product Reviews &<br />
+          <span class="text-primary-600">Buying Advice You Can Trust</span>
+        </h1>
+        <p class="text-xl text-gray-700 mb-8">
+          We test thousands of products each year to help you make informed purchasing decisions.
+          No sponsorships, no affiliate bias.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="#featured" class="btn-primary px-8 py-3 text-lg">
+            Browse Featured Reviews
+          </a>
+          <a href="#categories" class="btn-secondary px-8 py-3 text-lg">
+            Explore Categories
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Reviews -->
+  <section id="featured" class="section-padding">
+    <div class="container-custom">
+      <div class="flex items-center justify-between mb-8">
+        <h2 class="heading-2">Featured Reviews</h2>
+        <a href="/reviews" class="text-primary-600 hover:text-primary-700 font-semibold">
+          View All Reviews →
+        </a>
+      </div>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {featuredReviews.map((review) => (
+          <ReviewCard {...review} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Product Comparison -->
+  <section class="bg-gray-50 section-padding">
+    <div class="container-custom">
+      <h2 class="heading-2 text-center mb-12">Top Laptop Comparison</h2>
+      <ProductTable products={sampleProducts} />
+      <div class="text-center mt-8">
+        <a href="/comparison" class="text-primary-600 hover:text-primary-700 font-semibold">
+          Compare More Products →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories Grid -->
+  <section id="categories" class="section-padding">
+    <div class="container-custom">
+      <h2 class="heading-2 text-center mb-12">Browse by Category</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {categories.map((category) => (
+          <a
+            href={`/category/${category.name.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-')}`}
+            class="card-hover p-6 text-center group"
+          >
+            <div class="text-4xl mb-4">{category.icon}</div>
+            <h3 class="heading-3 mb-2 group-hover:text-primary-600 transition-colors">
+              {category.name}
+            </h3>
+            <p class="text-gray-600">
+              {category.count} reviews & guides
+            </p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- How We Test -->
+  <section class="bg-primary-50 section-padding">
+    <div class="container-custom">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="heading-2 mb-6">How We Test Products</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+          <div class="text-center">
+            <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <span class="text-2xl">🔬</span>
+            </div>
+            <h3 class="heading-3 mb-3">Rigorous Testing</h3>
+            <p class="text-gray-700">
+              Each product undergoes weeks of real-world testing by our expert reviewers.
+            </p>
+          </div>
+          <div class="text-center">
+            <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <span class="text-2xl">🎯</span>
+            </div>
+            <h3 class="heading-3 mb-3">No Sponsorships</h3>
+            <p class="text-gray-700">
+              We buy all products ourselves and never accept payment for reviews.
+            </p>
+          </div>
+          <div class="text-center">
+            <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <span class="text-2xl">📈</span>
+            </div>
+            <h3 class="heading-3 mb-3">Data-Driven</h3>
+            <p class="text-gray-700">
+              Decisions based on performance metrics, user feedback, and long-term reliability.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter CTA -->
+  <section class="section-padding">
+    <div class="container-custom">
+      <div class="max-w-2xl mx-auto text-center card p-8">
+        <h2 class="heading-2 mb-4">Stay Informed</h2>
+        <p class="text-gray-700 mb-6">
+          Get weekly updates on new reviews, buying guides, and exclusive deals.
+        </p>
+        <form class="flex flex-col sm:flex-row gap-3">
+          <input
+            type="email"
+            placeholder="Your email address"
+            class="flex-grow px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
+            required
+          />
+          <button
+            type="submit"
+            class="btn-primary px-6 py-3 whitespace-nowrap"
+          >
+            Subscribe
+          </button>
+        </form>
+        <p class="text-sm text-gray-500 mt-4">
+          No spam. Unsubscribe anytime.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

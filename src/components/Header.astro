@@ -1,0 +1,97 @@
+---
+import { useState } from 'react';
+// 暂时移除图标导入，使用简单 SVG
+// import SearchIcon from '../icons/SearchIcon.astro';
+// import MenuIcon from '../icons/MenuIcon.astro';
+// import CloseIcon from '../icons/CloseIcon.astro';
+
+const categories = [
+  { name: 'Home', href: '/' },
+  { name: 'Electronics', href: '/electronics' },
+  { name: 'Home & Garden', href: '/home-garden' },
+  { name: 'Kitchen', href: '/kitchen' },
+  { name: 'Sleep', href: '/sleep' },
+  { name: 'Health & Fitness', href: '/health-fitness' },
+  { name: 'Travel', href: '/travel' },
+  { name: 'Kids & Family', href: '/kids-family' },
+];
+---
+
+<header class="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
+  <div class="container-custom">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo -->
+      <div class="flex items-center">
+        <a href="/" class="flex items-center space-x-2">
+          <div class="w-8 h-8 bg-primary-500 rounded-lg"></div>
+          <span class="text-xl font-bold text-gray-900">Wirecutter<span class="text-primary-500">Clone</span></span>
+        </a>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center space-x-6">
+        {categories.map((category) => (
+          <a
+            href={category.href}
+            class="text-gray-700 hover:text-primary-600 font-medium transition-colors"
+          >
+            {category.name}
+          </a>
+        ))}
+      </nav>
+
+      <!-- Search and Actions -->
+      <div class="flex items-center space-x-4">
+        <!-- Search Button -->
+        <button class="p-2 text-gray-600 hover:text-primary-600">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="9" cy="9" r="7" />
+            <line x1="14" y1="14" x2="18" y2="18" />
+          </svg>
+        </button>
+
+        <!-- Mobile Menu Button -->
+        <button class="md:hidden p-2 text-gray-600 hover:text-primary-600" id="mobile-menu-button">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="6" x2="17" y2="6" />
+            <line x1="3" y1="11" x2="17" y2="11" />
+            <line x1="3" y1="16" x2="17" y2="16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="md:hidden hidden" id="mobile-menu">
+    <div class="px-4 pt-2 pb-3 space-y-1">
+      {categories.map((category) => (
+        <a
+          href={category.href}
+          class="block px-3 py-2 text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded-md"
+        >
+          {category.name}
+        </a>
+      ))}
+    </div>
+  </div>
+
+  <script>
+    // Mobile menu toggle
+    const menuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    if (menuButton && mobileMenu) {
+      menuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+      
+      // Close menu when clicking outside
+      document.addEventListener('click', (event) => {
+        if (!menuButton.contains(event.target) && !mobileMenu.contains(event.target)) {
+          mobileMenu.classList.add('hidden');
+        }
+      });
+    }
+  </script>
+</header>

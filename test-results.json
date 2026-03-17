@@ -1,0 +1,50 @@
+[
+  {
+    "name": "首页",
+    "path": "/",
+    "status": "✅ 成功",
+    "desktopFile": "test-首页-desktop.png",
+    "mobileFile": "test-首页-mobile.png",
+    "description": "Wirecutter Clone 首页 - 特色评测和产品对比"
+  },
+  {
+    "name": "电子产品分类页",
+    "path": "/category/electronics/",
+    "status": "✅ 成功",
+    "desktopFile": "test-电子产品分类页-desktop.png",
+    "mobileFile": "test-电子产品分类页-mobile.png",
+    "description": "电子产品分类 - 包含子分类和筛选功能"
+  },
+  {
+    "name": "家居园艺分类页",
+    "path": "/category/home-garden/",
+    "status": "✅ 成功",
+    "desktopFile": "test-家居园艺分类页-desktop.png",
+    "mobileFile": "test-家居园艺分类页-mobile.png",
+    "description": "家居园艺分类页面"
+  },
+  {
+    "name": "厨房分类页",
+    "path": "/category/kitchen/",
+    "status": "✅ 成功",
+    "desktopFile": "test-厨房分类页-desktop.png",
+    "mobileFile": "test-厨房分类页-mobile.png",
+    "description": "厨房用品分类页面"
+  },
+  {
+    "name": "睡眠分类页",
+    "path": "/category/sleep/",
+    "status": "✅ 成功",
+    "desktopFile": "test-睡眠分类页-desktop.png",
+    "mobileFile": "test-睡眠分类页-mobile.png",
+    "description": "睡眠产品分类页面"
+  },
+  {
+    "name": "健康健身分类页",
+    "path": "/category/health-fitness/",
+    "status": "✅ 成功",
+    "desktopFile": "test-健康健身分类页-desktop.png",
+    "mobileFile": "test-健康健身分类页-mobile.png",
+    "description": "健康健身分类页面"
+  }
+]

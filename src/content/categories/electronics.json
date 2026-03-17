@@ -1,0 +1,22 @@
+{
+  "name": "Electronics",
+  "slug": "electronics",
+  "description": "Expert reviews and buying guides for laptops, smartphones, headphones, cameras, and all consumer electronics.",
+  "icon": "💻",
+  "parentCategory": "",
+  "subcategories": [
+    "laptops",
+    "smartphones",
+    "headphones",
+    "tablets",
+    "monitors",
+    "cameras",
+    "audio",
+    "gaming",
+    "smart-home",
+    "wearables"
+  ],
+  "productCount": 245,
+  "reviewCount": 189,
+  "featured": true
+}
