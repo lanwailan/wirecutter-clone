@@ -5,16 +5,20 @@ import { useState } from 'react';
 // import MenuIcon from '../icons/MenuIcon.astro';
 // import CloseIcon from '../icons/CloseIcon.astro';
 
+// 从 props 获取语言，默认为英语
+const lang = Astro.props.lang || 'en';
+const basePath = lang === 'en' ? '/en' : '';
+
 const categories = [
-  { name: 'Home', href: '/' },
-  { name: 'Reviews', href: '/reviews' },
-  { name: 'Electronics', href: '/category/electronics' },
-  { name: 'Home & Garden', href: '/category/home-garden' },
-  { name: 'Kitchen', href: '/category/kitchen' },
-  { name: 'Sleep', href: '/category/sleep' },
-  { name: 'Health & Fitness', href: '/category/health-fitness' },
-  { name: 'Travel', href: '/category/travel' },
-  { name: 'Kids & Family', href: '/category/kids-family' },
+  { name: 'Home', href: `${basePath}/` },
+  { name: 'Reviews', href: `${basePath}/reviews` },
+  { name: 'Electronics', href: `${basePath}/category/electronics` },
+  { name: 'Home & Garden', href: `${basePath}/category/home-garden` },
+  { name: 'Kitchen', href: `${basePath}/category/kitchen` },
+  { name: 'Sleep', href: `${basePath}/category/sleep` },
+  { name: 'Health & Fitness', href: `${basePath}/category/health-fitness` },
+  { name: 'Travel', href: `${basePath}/category/travel` },
+  { name: 'Kids & Family', href: `${basePath}/category/kids-family` },
 ];
 ---
 

@@ -1,0 +1,122 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ReviewCard from '@/components/ReviewCard.tsx';
+import { getCollection, filterByLang } from '@/content/config';
+
+const lang = 'en';
+
+// 获取所有英语评测
+const allReviews = await getCollection('reviews');
+const englishReviews = filterByLang(allReviews, lang);
+
+// 按日期排序（最新的在前）
+const sortedReviews = [...englishReviews].sort((a, b) => 
+  new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime()
+);
+---
+
+<BaseLayout 
+  title="Product Reviews - Wirecutter Clone"
+  description="Browse all our expert product reviews and buying advice."
+  lang={lang}
+>
+  <div class="container mx-auto px-4 py-8">
+    <!-- 面包屑导航 -->
+    <nav class="text-sm text-gray-600 mb-6">
+      <a href="/en" class="hover:text-blue-600">Home</a> &gt;
+      <span class="text-gray-800">Reviews</span>
+    </nav>
+
+    <div class="mb-8">
+      <h1 class="text-3xl font-bold mb-2">Product Reviews</h1>
+      <p class="text-gray-600">
+        Expert reviews and buying advice for the best products. {englishReviews.length} reviews and counting.
+      </p>
+    </div>
+
+    <!-- 筛选器 -->
+    <div class="bg-gray-50 rounded-lg p-4 mb-8">
+      <div class="flex flex-wrap items-center gap-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Sort by</label>
+          <select class="border rounded-lg px-3 py-2 text-sm">
+            <option>Newest First</option>
+            <option>Highest Rated</option>
+            <option>Most Helpful</option>
+          </select>
+        </div>
+        
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Category</label>
+          <select class="border rounded-lg px-3 py-2 text-sm">
+            <option>All Categories</option>
+            <option>Electronics</option>
+            <option>Home & Garden</option>
+            <option>Kitchen</option>
+          </select>
+        </div>
+        
+        <div class="flex-1">
+          <label class="block text-sm font-medium text-gray-700 mb-1">Search</label>
+          <input 
+            type="search" 
+            placeholder="Search reviews..." 
+            class="w-full border rounded-lg px-3 py-2 text-sm"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- 评测列表 -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {sortedReviews.map((review) => (
+        <ReviewCard
+          title={review.data.title}
+          category={review.data.productCategory}
+          rating={review.data.rating}
+          pros={review.data.pros.slice(0, 2)}
+          cons={review.data.cons.slice(0, 1)}
+          slug={`/en/reviews/${review.slug}`}
+          image={review.data.coverImage}
+          lang={lang}
+        />
+      ))}
+    </div>
+    
+    {englishReviews.length === 0 && (
+      <div class="text-center py-12">
+        <h2 class="text-xl font-semibold mb-2">No reviews yet</h2>
+        <p class="text-gray-600">Check back soon for expert product reviews!</p>
+      </div>
+    )}
+
+    <!-- 分页（未来实现） -->
+    {englishReviews.length > 12 && (
+      <div class="mt-12 flex justify-center">
+        <nav class="flex items-center space-x-2">
+          <button class="px-3 py-2 border rounded-lg text-gray-600 hover:bg-gray-50">
+            Previous
+          </button>
+          <button class="px-3 py-2 border rounded-lg bg-primary-600 text-white">
+            1
+          </button>
+          <button class="px-3 py-2 border rounded-lg text-gray-600 hover:bg-gray-50">
+            2
+          </button>
+          <button class="px-3 py-2 border rounded-lg text-gray-600 hover:bg-gray-50">
+            3
+          </button>
+          <button class="px-3 py-2 border rounded-lg text-gray-600 hover:bg-gray-50">
+            Next
+          </button>
+        </nav>
+      </div>
+    )}
+  </div>
+</BaseLayout>
+
+<style>
+.container {
+  max-width: 1200px;
+}
+</style>

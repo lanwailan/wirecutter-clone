@@ -1,4 +1,5 @@
 ---
+lang: "en"
 title: "MacBook Pro 16-inch (2026) Review: Still the King of Pro Laptops"
 description: "After 3 months of intensive testing, we evaluate Apple's latest flagship laptop for creative professionals and developers."
 productName: "MacBook Pro 16-inch"

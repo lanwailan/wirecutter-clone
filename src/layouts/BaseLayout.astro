@@ -6,13 +6,18 @@ import '../styles/global.css';
 export interface Props {
   title?: string;
   description?: string;
+  lang?: string;
 }
 
-const { title = 'Wirecutter Clone', description = 'Product reviews and buying advice' } = Astro.props;
+const { 
+  title = 'Wirecutter Clone', 
+  description = 'Product reviews and buying advice',
+  lang = 'en'
+} = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang={lang} class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
