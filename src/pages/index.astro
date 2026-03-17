@@ -1,14 +1,8 @@
 ---
-// 重定向到默认语言（英语）
-const defaultLang = 'en';
----
+// 立即重定向到英语版本
+import { redirect } from 'astro:actions';
 
-<html>
-  <head>
-    <meta http-equiv="refresh" content="0; url=/en" />
-    <title>Redirecting to English version...</title>
-  </head>
-  <body>
-    <p>Redirecting to <a href="/en">English version</a>...</p>
-  </body>
-</html>
+export async function GET() {
+  return redirect('/en', 302);
+}
+---

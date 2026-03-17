@@ -1,0 +1,52 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const lang = 'en';
+---
+
+<BaseLayout 
+  title="Wirecutter Clone - Product Reviews You Can Trust"
+  description="Expert product reviews, buying guides, and recommendations."
+  lang={lang}
+>
+  <div class="container mx-auto px-4 py-12 text-center">
+    <h1 class="text-4xl font-bold mb-6">Wirecutter Clone</h1>
+    <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+      Product reviews and buying advice you can trust. Our experts test thousands of products to help you make the best decisions.
+    </p>
+    
+    <div class="space-y-6 max-w-md mx-auto">
+      <div class="bg-white p-6 rounded-lg border shadow-sm">
+        <h2 class="text-2xl font-bold mb-3">MacBook Pro 2026 Review</h2>
+        <p class="text-gray-600 mb-4">The best pro laptop for creative work with exceptional performance and battery life.</p>
+        <a 
+          href="/en/reviews/macbook-pro-2026" 
+          class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700"
+        >
+          Read Review
+        </a>
+      </div>
+      
+      <div class="bg-white p-6 rounded-lg border shadow-sm">
+        <h2 class="text-2xl font-bold mb-3">All Reviews</h2>
+        <p class="text-gray-600 mb-4">Browse all our expert product reviews and buying advice.</p>
+        <a 
+          href="/en/reviews-static" 
+          class="inline-block border border-blue-600 text-blue-600 px-6 py-3 rounded-lg font-medium hover:bg-blue-50"
+        >
+          Browse All Reviews
+        </a>
+      </div>
+    </div>
+    
+    <div class="mt-12 text-sm text-gray-500">
+      <p>If links don't work, the dynamic pages may still be building. Check back in a few minutes.</p>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+.container {
+  max-width: 800px;
+}
+</style>
