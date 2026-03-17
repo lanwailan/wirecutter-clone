@@ -12,8 +12,7 @@ export async function getStaticPaths() {
   
   return englishReviews.map((review) => ({
     params: { 
-      slug: review.slug,
-      lang: lang
+      slug: review.slug
     },
     props: { 
       review,
