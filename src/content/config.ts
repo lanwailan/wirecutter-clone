@@ -1,18 +1,10 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
-// 支持的语言
-export const languages = {
-  en: 'English',
-  // zh: '中文', // 未来支持
-} as const;
-
-export type Language = keyof typeof languages;
-
-// Review collection schema (多语言)
+// Review collection schema
 const reviewsCollection = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content' }),
-  schema: ({ image }) => z.object({
+  schema: z.object({
     // 语言标识
     lang: z.enum(['en', 'zh']).default('en'),
     
@@ -78,7 +70,7 @@ const reviewsCollection = defineCollection({
   }),
 });
 
-// Guide collection schema (多语言)
+// Guide collection schema
 const guidesCollection = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content' }),
   schema: z.object({
@@ -96,7 +88,7 @@ const guidesCollection = defineCollection({
   }),
 });
 
-// Category collection schema (多语言)
+// Category collection schema
 const categoriesCollection = defineCollection({
   loader: glob({ pattern: '**/*.json', base: './src/content' }),
   schema: z.object({
@@ -118,13 +110,3 @@ export const collections = {
   'guides': guidesCollection,
   'categories': categoriesCollection,
 };
-
-// 辅助函数：按语言过滤内容
-export function filterByLang<T extends { data: { lang: string } }>(items: T[], lang: string): T[] {
-  return items.filter(item => item.data.lang === lang);
-}
-
-// 辅助函数：获取默认语言
-export function getDefaultLang(): Language {
-  return 'en';
-}

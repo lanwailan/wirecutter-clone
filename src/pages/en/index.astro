@@ -1,13 +1,15 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import ReviewCard from '@/components/ReviewCard.tsx';
-import { getCollection, filterByLang, getDefaultLang } from '@/content/config';
+import { getCollection } from 'astro:content';
 
 const lang = 'en'; // 英语
 
-// 获取英语内容
+// 获取所有内容并按语言过滤
 const allReviews = await getCollection('reviews');
-const englishReviews = filterByLang(allReviews, lang).slice(0, 6);
+const englishReviews = allReviews
+  .filter(review => review.data.lang === lang)
+  .slice(0, 6);
 
 const allCategories = await getCollection('categories');
 const englishCategories = filterByLang(allCategories, lang);

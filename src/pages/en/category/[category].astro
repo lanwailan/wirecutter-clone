@@ -1,14 +1,14 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import ReviewCard from '@/components/ReviewCard.tsx';
-import { getCollection, filterByLang } from '@/content/config';
+import { getCollection } from 'astro:content';
 
 const lang = 'en';
 
 // 导出 getStaticPaths 函数
 export async function getStaticPaths() {
   const allCategories = await getCollection('categories');
-  const englishCategories = filterByLang(allCategories, lang);
+  const englishCategories = allCategories.filter(cat => cat.data.lang === lang);
   
   return englishCategories.map((category) => ({
     params: { 
@@ -27,7 +27,8 @@ const { category, lang: pageLang } = Astro.props;
 
 // 获取该分类下的所有英语评测
 const allReviews = await getCollection('reviews');
-const categoryReviews = filterByLang(allReviews, pageLang)
+const categoryReviews = allReviews
+  .filter(review => review.data.lang === pageLang)
   .filter(review => review.data.productCategory === category.data.name)
   .sort((a, b) => new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime());
 ---

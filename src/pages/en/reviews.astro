@@ -1,13 +1,13 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import ReviewCard from '@/components/ReviewCard.tsx';
-import { getCollection, filterByLang } from '@/content/config';
+import { getCollection } from 'astro:content';
 
 const lang = 'en';
 
 // 获取所有英语评测
 const allReviews = await getCollection('reviews');
-const englishReviews = filterByLang(allReviews, lang);
+const englishReviews = allReviews.filter(review => review.data.lang === lang);
 
 // 按日期排序（最新的在前）
 const sortedReviews = [...englishReviews].sort((a, b) => 
