@@ -3,7 +3,7 @@ import { glob } from 'astro/loaders';
 
 // Review collection schema
 const reviewsCollection = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content' }),
+  loader: glob({ pattern: '**/reviews/*.md', base: './src/content' }),
   schema: z.object({
     // 语言标识
     lang: z.enum(['en', 'zh']).default('en'),
@@ -72,7 +72,7 @@ const reviewsCollection = defineCollection({
 
 // Guide collection schema
 const guidesCollection = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content' }),
+  loader: glob({ pattern: '**/guides/*.md', base: './src/content' }),
   schema: z.object({
     lang: z.enum(['en', 'zh']).default('en'),
     title: z.string(),
@@ -90,7 +90,7 @@ const guidesCollection = defineCollection({
 
 // Category collection schema
 const categoriesCollection = defineCollection({
-  loader: glob({ pattern: '**/*.json', base: './src/content' }),
+  loader: glob({ pattern: '**/categories/*.json', base: './src/content' }),
   schema: z.object({
     lang: z.enum(['en', 'zh']).default('en'),
     name: z.string(),

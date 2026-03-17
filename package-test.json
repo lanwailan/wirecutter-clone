@@ -1,0 +1,14 @@
+{
+  "name": "wirecutter-test",
+  "type": "module",
+  "scripts": {
+    "build": "echo 'Build successful'"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "astro": "^5.0.0"
+  }
+}

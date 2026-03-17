@@ -172,9 +172,7 @@ declare module 'astro:content' {
 }>;
 "guides": Record<string, {
   id: string;
-  render(): Render[".md"];
-  slug: string;
-  body: string;
+  body?: string;
   collection: "guides";
   data: InferEntrySchema<"guides">;
   rendered?: RenderedContent;
@@ -182,9 +180,7 @@ declare module 'astro:content' {
 }>;
 "reviews": Record<string, {
   id: string;
-  render(): Render[".md"];
-  slug: string;
-  body: string;
+  body?: string;
   collection: "reviews";
   data: InferEntrySchema<"reviews">;
   rendered?: RenderedContent;

@@ -1,4 +1,5 @@
 ---
+lang: "en"
 title: "How to Choose the Right Laptop: 2026 Buying Guide"
 description: "A comprehensive guide to finding the perfect laptop for your needs and budget."
 category: "Electronics"

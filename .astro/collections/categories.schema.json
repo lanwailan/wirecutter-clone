@@ -4,6 +4,14 @@
     "categories": {
       "type": "object",
       "properties": {
+        "lang": {
+          "type": "string",
+          "enum": [
+            "en",
+            "zh"
+          ],
+          "default": "en"
+        },
         "name": {
           "type": "string"
         },
