@@ -2,20 +2,6 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "devCommand": "npm run dev",
-  "installCommand": "npm ci",  // 使用 ci 而不是 install，更快更稳定
-  "framework": "astro",
-  "functions": {
-    "**/*.html": {
-      "maxDuration": 5
-    }
-  },
-  "regions": ["iad1"],  // 使用美国东部，构建更快
-  "env": {
-    "ENABLE_ISR": "true",
-    "NODE_ENV": "production",
-    "NODE_VERSION": "18"  // 指定 Node.js 版本
-  },
-  "github": {
-    "silent": true
-  }
+  "installCommand": "npm ci",
+  "framework": "astro"
 }
